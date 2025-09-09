@@ -85,7 +85,7 @@ const Index = () => {
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                     activeSection === item.id
                       ? "bg-white text-black shadow-lg shadow-white/20"
-                      : "text-gray-300 hover:text-white hover:bg-white/10"
+                      : "text-white hover:text-white hover:bg-white/10"
                   }`}
                 >
                   <Icon name={item.icon as any} size={18} />
@@ -105,7 +105,7 @@ const Index = () => {
               <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent animate-pulse">
                 Discord Design
               </h1>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-100 max-w-2xl mx-auto leading-relaxed">
                 Профессиональный дизайн для вашего Discord профиля. 
                 Аватары, баннеры, анимация - все для создания уникального образа
               </p>
@@ -120,8 +120,8 @@ const Index = () => {
                 <Card key={index} className="bg-white/5 border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
                   <CardContent className="p-8 text-center">
                     <Icon name={feature.icon as any} size={48} className="mx-auto mb-4 text-white" />
-                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-gray-300">{feature.desc}</p>
+                    <h3 className="text-xl font-semibold mb-2 text-white">{feature.title}</h3>
+                    <p className="text-gray-100">{feature.desc}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -135,7 +135,7 @@ const Index = () => {
               <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Услуги
               </h2>
-              <p className="text-xl text-gray-300">Выберите нужные опции для вашего Discord профиля</p>
+              <p className="text-xl text-gray-100">Выберите нужные опции для вашего Discord профиля</p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -150,7 +150,7 @@ const Index = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-300 mb-4">
+                    <p className="text-gray-100 mb-4">
                       {service.id === "avatar" && "Стильный аватар под вашу тематику"}
                       {service.id === "banner" && "Красивый баннер для профиля"}
                       {service.id === "avatar-banner" && "Полный набор: аватар + баннер"}
@@ -172,7 +172,7 @@ const Index = () => {
               <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Калькулятор цены
               </h2>
-              <p className="text-xl text-gray-300">Рассчитайте стоимость вашего заказа</p>
+              <p className="text-xl text-gray-100">Рассчитайте стоимость вашего заказа</p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12">
@@ -214,7 +214,7 @@ const Index = () => {
                     <div className="text-6xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                       {totalPrice}₽
                     </div>
-                    <p className="text-gray-300">
+                    <p className="text-gray-100">
                       Выбрано услуг: {selectedServices.length}
                     </p>
                     <Button 
@@ -237,7 +237,7 @@ const Index = () => {
               <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Оформление заказа
               </h2>
-              <p className="text-xl text-gray-300">Заполните форму для создания заказа</p>
+              <p className="text-xl text-gray-100">Заполните форму для создания заказа</p>
             </div>
 
             <Card className="max-w-2xl mx-auto bg-white/5 border-white/10 backdrop-blur-md">
@@ -247,7 +247,7 @@ const Index = () => {
                   <input 
                     type="text" 
                     placeholder="username#1234"
-                    className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white/50"
                   />
                 </div>
 
@@ -255,7 +255,7 @@ const Index = () => {
                   <label className="block text-sm font-medium">Описание заказа / Пожелания</label>
                   <Textarea 
                     placeholder="Опишите что именно вы хотите..."
-                    className="bg-white/10 border-white/20 text-white placeholder-gray-400 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-white/50"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-200 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-white/50"
                   />
                 </div>
 
@@ -263,7 +263,7 @@ const Index = () => {
                   <label className="block text-sm font-medium">Загрузить свой фон (если выбрана опция)</label>
                   <div className="border-2 border-dashed border-white/20 rounded-lg p-8 text-center hover:border-white/40 transition-colors cursor-pointer">
                     <Icon name="Upload" size={48} className="mx-auto mb-4 text-gray-400" />
-                    <p className="text-gray-400">Перетащите файл или нажмите для выбора</p>
+                    <p className="text-gray-200">Перетащите файл или нажмите для выбора</p>
                   </div>
                 </div>
 
@@ -290,7 +290,7 @@ const Index = () => {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-gray-400">Сначала выберите услуги в калькуляторе</p>
+                    <p className="text-gray-200">Сначала выберите услуги в калькуляторе</p>
                   )}
                 </div>
 
@@ -316,31 +316,31 @@ const Index = () => {
                         <h3 className="text-lg font-semibold text-white">Контактная информация</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-300">Ваше имя *</label>
+                            <label className="text-sm font-medium text-gray-100">Ваше имя *</label>
                             <Input 
                               placeholder="Введите ваше имя"
                               value={formData.name}
                               onChange={(e) => setFormData({...formData, name: e.target.value})}
-                              className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-white/50"
+                              className="bg-white/10 border-white/20 text-white placeholder-gray-200 focus:border-white/50"
                             />
                           </div>
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-300">Discord *</label>
+                            <label className="text-sm font-medium text-gray-100">Discord *</label>
                             <Input 
                               placeholder="username#1234"
                               value={formData.discord}
                               onChange={(e) => setFormData({...formData, discord: e.target.value})}
-                              className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-white/50"
+                              className="bg-white/10 border-white/20 text-white placeholder-gray-200 focus:border-white/50"
                             />
                           </div>
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-gray-300">Telegram для связи *</label>
+                          <label className="text-sm font-medium text-gray-100">Telegram для связи *</label>
                           <Input 
                             placeholder="@username или ссылка"
                             value={formData.telegram}
                             onChange={(e) => setFormData({...formData, telegram: e.target.value})}
-                            className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-white/50"
+                            className="bg-white/10 border-white/20 text-white placeholder-gray-200 focus:border-white/50"
                           />
                         </div>
                       </div>
@@ -349,12 +349,12 @@ const Index = () => {
                       <div className="space-y-4">
                         <h3 className="text-lg font-semibold text-white">Описание дизайна</h3>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-gray-300">Что вы хотите? Опишите подробно *</label>
+                          <label className="text-sm font-medium text-gray-100">Что вы хотите? Опишите подробно *</label>
                           <Textarea 
                             placeholder="Опишите детально какой дизайн вам нужен: стиль, цвета, тематику, персонажей, настроение... Чем больше деталей, тем лучше результат!"
                             value={formData.designDescription}
                             onChange={(e) => setFormData({...formData, designDescription: e.target.value})}
-                            className="bg-white/10 border-white/20 text-white placeholder-gray-400 min-h-[120px] focus:border-white/50"
+                            className="bg-white/10 border-white/20 text-white placeholder-gray-200 min-h-[120px] focus:border-white/50"
                           />
                         </div>
                       </div>
@@ -364,8 +364,8 @@ const Index = () => {
                         <div className="space-y-4">
                           <h3 className="text-lg font-semibold text-white">Загрузка фона</h3>
                           <div className="border-2 border-dashed border-white/20 rounded-lg p-6 text-center hover:border-white/40 transition-colors">
-                            <Icon name="Upload" size={48} className="mx-auto mb-4 text-gray-400" />
-                            <p className="text-gray-400 mb-2">Загрузите свой фон для дизайна</p>
+                            <Icon name="Upload" size={48} className="mx-auto mb-4 text-gray-200" />
+                            <p className="text-gray-200 mb-2">Загрузите свой фон для дизайна</p>
                             <input 
                               type="file" 
                               accept="image/*"
@@ -385,7 +385,7 @@ const Index = () => {
                               const service = services.find(s => s.id === serviceId);
                               return service ? (
                                 <div key={serviceId} className="flex justify-between items-center">
-                                  <span className="text-gray-300">{service.name}</span>
+                                  <span className="text-gray-100">{service.name}</span>
                                   <Badge variant="outline" className="border-white/20 text-white">
                                     {service.price}₽
                                   </Badge>
@@ -400,7 +400,7 @@ const Index = () => {
                             </div>
                           </div>
                         ) : (
-                          <p className="text-gray-400">Сначала выберите услуги</p>
+                          <p className="text-gray-200">Сначала выберите услуги</p>
                         )}
                       </div>
 
@@ -439,7 +439,7 @@ const Index = () => {
               <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Отзывы клиентов
               </h2>
-              <p className="text-xl text-gray-300">Что говорят о нашей работе</p>
+              <p className="text-xl text-gray-100">Что говорят о нашей работе</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -451,8 +451,8 @@ const Index = () => {
                         <Icon key={i} name="Star" size={20} className="text-white fill-current" />
                       ))}
                     </div>
-                    <p className="text-gray-300 mb-4 italic">"{review.text}"</p>
-                    <p className="font-semibold">— {review.name}</p>
+                    <p className="text-gray-100 mb-4 italic">"{review.text}"</p>
+                    <p className="font-semibold text-white">— {review.name}</p>
                   </CardContent>
                 </Card>
               ))}
