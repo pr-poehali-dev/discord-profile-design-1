@@ -84,7 +84,7 @@ const Index = () => {
                   onClick={() => setActiveSection(item.id)}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                     activeSection === item.id
-                      ? "bg-white text-black shadow-lg shadow-white/20"
+                      ? "bg-white text-white shadow-lg shadow-white/20"
                       : "text-white hover:text-white hover:bg-white/10"
                   }`}
                 >
@@ -143,7 +143,7 @@ const Index = () => {
                 <Card key={service.id} className="bg-white/5 border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="flex items-center justify-between">
-                      <span>{service.name}</span>
+                      <span className="font-bold italic text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">{service.name}</span>
                       <Badge variant="outline" className="border-white/20 text-white">
                         {service.price}₽
                       </Badge>
@@ -191,7 +191,7 @@ const Index = () => {
                       />
                       <label htmlFor={service.id} className="flex-1 cursor-pointer">
                         <div className="flex justify-between items-center">
-                          <span>{service.name}</span>
+                          <span className="font-bold italic text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">{service.name}</span>
                           <Badge variant="outline" className="border-white/20 text-white">
                             {service.price}₽
                           </Badge>
@@ -218,7 +218,7 @@ const Index = () => {
                       Выбрано услуг: {selectedServices.length}
                     </p>
                     <Button 
-                      className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-lg shadow-white/20"
+                      className="w-full bg-white text-black hover:bg-gray-100 transition-all duration-300 shadow-lg shadow-white/20"
                       onClick={() => setActiveSection("order")}
                       disabled={selectedServices.length === 0}
                     >
@@ -297,7 +297,7 @@ const Index = () => {
                 <Dialog open={isPaymentOpen} onOpenChange={setIsPaymentOpen}>
                   <DialogTrigger asChild>
                     <Button 
-                      className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-lg shadow-white/20 text-lg py-6"
+                      className="w-full bg-white text-black hover:bg-gray-100 transition-all duration-300 shadow-lg shadow-white/20 text-lg py-6"
                       disabled={selectedServices.length === 0}
                     >
                       Оформить и оплатить
@@ -385,7 +385,7 @@ const Index = () => {
                               const service = services.find(s => s.id === serviceId);
                               return service ? (
                                 <div key={serviceId} className="flex justify-between items-center">
-                                  <span className="text-gray-100">{service.name}</span>
+                                  <span className="text-white font-bold italic drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">{service.name}</span>
                                   <Badge variant="outline" className="border-white/20 text-white">
                                     {service.price}₽
                                   </Badge>
@@ -414,7 +414,7 @@ const Index = () => {
                           Отмена
                         </Button>
                         <Button 
-                          className="flex-1 bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-lg shadow-white/20"
+                          className="flex-1 bg-white text-black hover:bg-gray-100 transition-all duration-300 shadow-lg shadow-white/20"
                           disabled={!formData.name || !formData.discord || !formData.telegram || !formData.designDescription || selectedServices.length === 0}
                           onClick={() => {
                             alert('Заказ успешно оформлен! Мы свяжемся с вами в Telegram для оплаты.');
