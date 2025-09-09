@@ -4,12 +4,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    discord: "",
+    telegram: "",
+    designDescription: "",
+    customBackground: null as File | null
+  });
 
   const services = [
     { id: "avatar", name: "Аватар", price: 500 },
@@ -284,12 +294,140 @@ const Index = () => {
                   )}
                 </div>
 
-                <Button 
-                  className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-lg shadow-white/20 text-lg py-6"
-                  disabled={selectedServices.length === 0}
-                >
-                  Отправить заказ
-                </Button>
+                <Dialog open={isPaymentOpen} onOpenChange={setIsPaymentOpen}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-lg shadow-white/20 text-lg py-6"
+                      disabled={selectedServices.length === 0}
+                    >
+                      Оформить и оплатить
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl bg-black border-white/20 text-white max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        Оформление заказа
+                      </DialogTitle>
+                    </DialogHeader>
+                    
+                    <div className="space-y-6 pt-4">
+                      {/* Personal Info */}
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-semibold text-white">Контактная информация</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Ваше имя *</label>
+                            <Input 
+                              placeholder="Введите ваше имя"
+                              value={formData.name}
+                              onChange={(e) => setFormData({...formData, name: e.target.value})}
+                              className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-white/50"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Discord *</label>
+                            <Input 
+                              placeholder="username#1234"
+                              value={formData.discord}
+                              onChange={(e) => setFormData({...formData, discord: e.target.value})}
+                              className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-white/50"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-300">Telegram для связи *</label>
+                          <Input 
+                            placeholder="@username или ссылка"
+                            value={formData.telegram}
+                            onChange={(e) => setFormData({...formData, telegram: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-white/50"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Design Requirements */}
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-semibold text-white">Описание дизайна</h3>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-300">Что вы хотите? Опишите подробно *</label>
+                          <Textarea 
+                            placeholder="Опишите детально какой дизайн вам нужен: стиль, цвета, тематику, персонажей, настроение... Чем больше деталей, тем лучше результат!"
+                            value={formData.designDescription}
+                            onChange={(e) => setFormData({...formData, designDescription: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder-gray-400 min-h-[120px] focus:border-white/50"
+                          />
+                        </div>
+                      </div>
+
+                      {/* File Upload */}
+                      {selectedServices.includes('custom-bg') && (
+                        <div className="space-y-4">
+                          <h3 className="text-lg font-semibold text-white">Загрузка фона</h3>
+                          <div className="border-2 border-dashed border-white/20 rounded-lg p-6 text-center hover:border-white/40 transition-colors">
+                            <Icon name="Upload" size={48} className="mx-auto mb-4 text-gray-400" />
+                            <p className="text-gray-400 mb-2">Загрузите свой фон для дизайна</p>
+                            <input 
+                              type="file" 
+                              accept="image/*"
+                              className="text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white/10 file:text-white hover:file:bg-white/20"
+                              onChange={(e) => setFormData({...formData, customBackground: e.target.files?.[0] || null})}
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Order Summary */}
+                      <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+                        <h3 className="font-semibold mb-4 text-white">Сводка заказа</h3>
+                        {selectedServices.length > 0 ? (
+                          <div className="space-y-3">
+                            {selectedServices.map(serviceId => {
+                              const service = services.find(s => s.id === serviceId);
+                              return service ? (
+                                <div key={serviceId} className="flex justify-between items-center">
+                                  <span className="text-gray-300">{service.name}</span>
+                                  <Badge variant="outline" className="border-white/20 text-white">
+                                    {service.price}₽
+                                  </Badge>
+                                </div>
+                              ) : null;
+                            })}
+                            <div className="border-t border-white/20 pt-3 mt-4">
+                              <div className="flex justify-between items-center font-bold text-lg">
+                                <span>Итого к оплате:</span>
+                                <span className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">{totalPrice}₽</span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <p className="text-gray-400">Сначала выберите услуги</p>
+                        )}
+                      </div>
+
+                      {/* Payment Button */}
+                      <div className="flex gap-4">
+                        <Button 
+                          variant="outline"
+                          onClick={() => setIsPaymentOpen(false)}
+                          className="flex-1 border-white/20 text-white hover:bg-white/10"
+                        >
+                          Отмена
+                        </Button>
+                        <Button 
+                          className="flex-1 bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-lg shadow-white/20"
+                          disabled={!formData.name || !formData.discord || !formData.telegram || !formData.designDescription || selectedServices.length === 0}
+                          onClick={() => {
+                            alert('Заказ успешно оформлен! Мы свяжемся с вами в Telegram для оплаты.');
+                            setIsPaymentOpen(false);
+                          }}
+                        >
+                          <Icon name="CreditCard" size={20} className="mr-2" />
+                          Оформить заказ на {totalPrice}₽
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
           </div>
